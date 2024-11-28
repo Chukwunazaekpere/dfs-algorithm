@@ -20,19 +20,17 @@ log_date = datetime.now()
 logging.basicConfig(level=logging.INFO)
 
 
-# Implmenting the DFS algorithm, sequentially
-@omp
+@omp # decoraor signifying OMP4Py directive
 def dfs_sequential(tree:dict, node:str, nodes_visited=None):
-    count = 1
-    with omp("parallel"):
-        if nodes_visited is None:
-            nodes_visited = set()  # set is a non-hierarchical python data type, which does not permit repetitions
-        nodes_visited.add(node)    # the root node is added into the nodes_visited nodes
-        # print("\n\t node: ", node)         
-        with omp("for"):
-            for child in tree[node]:  # Recursively implemetation for visiting un-nodes_visited nodes
-                if child not in nodes_visited:
-                    dfs_sequential(tree, child, nodes_visited)
+    if nodes_visited is None:
+        nodes_visited = set()  # set is a non-hierarchical python data type, which does not permit repetitions
+    nodes_visited.add(node)    # the root node is added into the nodes_visited nodes
+    # print("\n\t node: ", node)         
+    with omp("for"):
+        for child in range(len(tree[node])):  # Recursively implemetation for visiting un-nodes_visited nodes
+            child_nodes = tree[node]
+            if child_nodes[child] not in nodes_visited:
+                dfs_sequential(tree, child_nodes[child], nodes_visited)
 
     return nodes_visited
 
