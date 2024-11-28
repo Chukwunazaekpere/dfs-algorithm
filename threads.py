@@ -11,6 +11,7 @@ Written: Nov 26th 2024
 Due: Nov 30th 2024
 """
 
+from omp4py import *
 from concurrent.futures import ThreadPoolExecutor
 import concurrent.futures
 from datetime import datetime
