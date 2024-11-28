@@ -51,3 +51,4 @@ if __name__ == "__main__":
     nodes_visited = dfs_sequential(tree, 'A')
     print("\n\t nodes_visited: ", nodes_visited)
     logging.info(msg=f"\n\t total time taken: {(time()-start_time)} secs")
+    
